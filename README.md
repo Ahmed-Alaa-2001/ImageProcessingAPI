@@ -21,3 +21,7 @@ Simple Node API for resizing images using Sharp
 TypeScript
 
 Jasmine for testing
+
+## Provided endpoints examples
+- Getting the original image:http://localhost:3000/api/orginal/?filename=santamonica
+- Getting the resized image: http://localhost:3000/api/images/?width=500&height=500&filename=santamonica
