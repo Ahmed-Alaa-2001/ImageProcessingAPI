@@ -1,4 +1,4 @@
-import { Request, Response, Router } from 'express'
+import { Router } from 'express'
 import { getApi, getResizedImage, getOrginalImage } from '../Controller/ImageController';
 import { query} from 'express-validator';
 const imageNames: string[] = ['fjord', 'encenadaport', 'palmtunnel', 'santamonica', 'icelandwaterfall']
