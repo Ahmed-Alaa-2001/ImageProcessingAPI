@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response} from 'express';
 
-const getHome = (req: Request, res: Response, next: NextFunction) => {
+const getHome = (req: Request, res: Response) => {
     res.send("Welcome to our program");
 }
 // export default getHome;

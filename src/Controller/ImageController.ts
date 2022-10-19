@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { ValidationError, validationResult} from 'express-validator';
+import { validationResult} from 'express-validator';
 import sharp from 'sharp'
 import fs from 'fs-extra'
 import path from 'path';
@@ -19,7 +19,7 @@ const valid = async (width: number, height: number, filename: string): Promise<b
     }
 }
 
-const getApi = (req: Request, res: Response, next: NextFunction) => {
+const getApi = (req: Request, res: Response) => {
     res.send("go to image Api");
 }
 const resizingImage = async (width: number, height: number, filename: string): Promise<void> => {
