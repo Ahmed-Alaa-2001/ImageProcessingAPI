@@ -43,8 +43,8 @@ const getResizedImage = async (req: Request, res: Response) => {
                 height,
                 thumbnail: `${filename}_${width}_${height}.jpg`
             })
-        } catch (err: any) {
-            req.flash('authError', err);
+        } catch (err: unknown) {
+            req.flash('authError',err as string );
             console.log(err);
             res.render('resizeImage', {
                 validationErrors: req.flash("validationErrors"),
@@ -76,8 +76,8 @@ const getOrginalImage= async (req: Request, res: Response) => {
                 thumbnail: `${name}.jpg`,
                 validationErrors: req.flash("validationErrors")
             })
-        } catch (err: any) {
-            req.flash('authError', err);
+        } catch (err: unknown ) {
+            req.flash('authError', err as string);
             res.render('index', {
                 thumbnail: `${name}.jpg`,
                 validationErrors: req.flash("validationErrors")
