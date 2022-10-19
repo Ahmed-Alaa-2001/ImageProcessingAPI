@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response} from 'express';
 import { validationResult} from 'express-validator';
 import sharp from 'sharp'
 import fs from 'fs-extra'
@@ -19,7 +19,7 @@ const valid = async (width: number, height: number, filename: string): Promise<b
     }
 }
 
-const getApi = (req: Request, res: Response) => {
+const getApi = (req: Request, res: Response):void => {
     res.send("go to image Api");
 }
 const resizingImage = async (width: number, height: number, filename: string): Promise<void> => {
@@ -57,7 +57,7 @@ const getResizedImage = async (req: Request, res: Response) => {
     else {
         // const x: ValidationError[] = validationResult(req).array();
         // console.log(x);
-        req.flash("validationErrors",validationResult(req).array() as any);
+        req.flash("validationErrors",validationResult(req).array() as unknown as string);
         // console.log(validationResult(req).array() as unknown as string)
         res.render('resizeImage', {
             validationErrors: req.flash("validationErrors"),
@@ -85,7 +85,7 @@ const getOrginalImage= async (req: Request, res: Response) => {
         }
     }
     else {
-        req.flash("validationErrors", validationResult(req).array() as any);
+        req.flash("validationErrors", validationResult(req).array() as unknown as string);
         res.render('index', {
             thumbnail: `${name}.jpg`,
             validationErrors: req.flash("validationErrors")
