@@ -7,7 +7,7 @@
 
 * [Overview](#Overview)
 * [Tools](#Tools)
-* [Provided endpoints examples](#endpoints)
+* [endpoints](#Provided endpoints examples)
 
 ## Overview
 
