@@ -73,11 +73,11 @@ const getOrginalImage= async (req: Request, res: Response) => {
                 validationErrors: req.flash("validationErrors")
             })
         } catch (err: unknown ) {
-            // req.flash('authError', err as string);
-            // res.status(200).render('index', {
-            //     thumbnail: `${name}.jpg`,
-            //     validationErrors: req.flash("validationErrors")
-            // })
+            req.flash('authError', err as string);
+            res.status(200).render('index', {
+                thumbnail: `${name}.jpg`,
+                validationErrors: req.flash("validationErrors")
+            })
         }
     }
     else {
