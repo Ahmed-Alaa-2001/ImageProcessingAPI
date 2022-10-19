@@ -1,0 +1,13 @@
+<%- include('parts/header') %>
+
+<body>
+    <% let filenameError = validationErrors.find(err => err.param === 'filename') %>
+    <% if(filenameError){ %> 
+        <p class="alert alert-danger">
+            <%= filenameError.msg %> 
+        </p>
+    <% }else if (thumbnail) { %>
+        <img src="http://localhost:3000/images/<%= thumbnail %>"/>
+    <% } %>
+
+<%- include('parts/footer')%>
