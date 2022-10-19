@@ -3,7 +3,6 @@ import { getApi, getResizedImage, getOrginalImage } from '../Controller/ImageCon
 import { query} from 'express-validator';
 const imageNames: string[] = ['fjord', 'encenadaport', 'palmtunnel', 'santamonica', 'icelandwaterfall']
 const router = Router();
-
 router.get(
   '/images',
   query('height')
