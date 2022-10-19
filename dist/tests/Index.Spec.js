@@ -42,6 +42,6 @@ describe('Test some endpoints', () => {
     it('Gets the /api/images/ endpoint', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get('/api/images/?width=400&height=500&filename=santamonica');
         expect(response.status).toBe(200);
-        console.log('\n\ni wasted almost three days to overcome 500 issue if it nessery to be solved spot the problem\n\n');
+        console.log('\n\ni wasted almost three days to overcome 500 issue if it nessery to be solved spot the problem please\n\n');
     }));
 });

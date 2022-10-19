@@ -86,6 +86,11 @@ const getOrginalImage = (req, res) => __awaiter(void 0, void 0, void 0, function
             });
         }
         catch (err) {
+            req.flash('authError', err);
+            res.status(200).render('index', {
+                thumbnail: `${name}.jpg`,
+                validationErrors: req.flash("validationErrors")
+            });
         }
     }
     else {
