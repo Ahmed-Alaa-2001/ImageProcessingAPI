@@ -6,17 +6,17 @@ const router = Router();
 router.get(
   '/images',
   query('height')
-      .exists()
-      .withMessage('the height is required')
-      .toInt()
-      .isInt({ max: 1000 })
-      .withMessage('max height should be 1000'),
+    .exists()
+    .withMessage('the height is required')
+    .toInt()
+    .isInt({ max: 1000, min: 100 })
+    .withMessage('range of the height should be [ 100, 1000 ]'),
   query('width')
     .exists()
     .withMessage('width is required')
     .toInt()
-    .isInt({ max: 1000 })
-    .withMessage('max width should be 1000'),
+    .isInt({ max: 1000, min: 100 })
+    .withMessage('range of the width should be [ 100, 1000 ]'),
   query('filename')
     .exists()
     .withMessage('Imge name is required')
