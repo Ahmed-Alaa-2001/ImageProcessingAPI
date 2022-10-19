@@ -55,10 +55,7 @@ const getResizedImage = async (req: Request, res: Response) => {
         }
     }
     else {
-        // const x: ValidationError[] = validationResult(req).array();
-        // console.log(x);
         req.flash("validationErrors",validationResult(req).array() as unknown as string);
-        // console.log(validationResult(req).array() as unknown as string)
         res.render('resizeImage', {
             validationErrors: req.flash("validationErrors"),
             thumbnail: `${filename}_${width}_${height}.jpg`,
