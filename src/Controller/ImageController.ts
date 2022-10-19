@@ -20,7 +20,7 @@ const valid = async (width: number, height: number, filename: string): Promise<b
 }
 
 const getApi = (req: Request, res: Response):void => {
-    res.send("go to image Api");
+    res.status(200).send("go to image Api");
 }
 const resizingImage = async (width: number, height: number, filename: string): Promise<void> => {
     const isImageExist = await valid(width, height, filename)
@@ -37,7 +37,7 @@ const getResizedImage = async (req: Request, res: Response) => {
         try {
             resizingImage(width, height, filename);
             // console.log(req.flash("validationErrors"));
-            res.render('resizeImage', {
+            res.status(200).render('resizeImage', {
                 validationErrors: req.flash("validationErrors"),
                 width,
                 height,
@@ -46,7 +46,7 @@ const getResizedImage = async (req: Request, res: Response) => {
         } catch (err: unknown) {
             req.flash('authError',err as string );
             console.log(err);
-            res.render('resizeImage', {
+            res.status(200).render('resizeImage', {
                 validationErrors: req.flash("validationErrors"),
                 width,
                 height,
@@ -56,7 +56,7 @@ const getResizedImage = async (req: Request, res: Response) => {
     }
     else {
         req.flash("validationErrors",validationResult(req).array() as unknown as string);
-        res.render('resizeImage', {
+        res.status(200).render('resizeImage', {
             validationErrors: req.flash("validationErrors"),
             thumbnail: `${filename}_${width}_${height}.jpg`,
             width,
@@ -65,25 +65,24 @@ const getResizedImage = async (req: Request, res: Response) => {
     }
 }
 const getOrginalImage= async (req: Request, res: Response) => {
-    // get query parameters
     const name: string = req.query.filename as string
     if (validationResult(req).isEmpty()) {
         try {
-            res.render('index', {
+            res.status(200).render('index', {
                 thumbnail: `${name}.jpg`,
                 validationErrors: req.flash("validationErrors")
             })
         } catch (err: unknown ) {
-            req.flash('authError', err as string);
-            res.render('index', {
-                thumbnail: `${name}.jpg`,
-                validationErrors: req.flash("validationErrors")
-            })
+            // req.flash('authError', err as string);
+            // res.status(200).render('index', {
+            //     thumbnail: `${name}.jpg`,
+            //     validationErrors: req.flash("validationErrors")
+            // })
         }
     }
     else {
         req.flash("validationErrors", validationResult(req).array() as unknown as string);
-        res.render('index', {
+        res.status(200).render('index', {
             thumbnail: `${name}.jpg`,
             validationErrors: req.flash("validationErrors")
         })

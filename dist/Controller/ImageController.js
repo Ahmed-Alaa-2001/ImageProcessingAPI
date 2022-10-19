@@ -29,8 +29,8 @@ const valid = (width, height, filename) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.valid = valid;
-const getApi = (req, res, next) => {
-    res.send("go to image Api");
+const getApi = (req, res) => {
+    res.status(200).send("go to image Api");
 };
 exports.getApi = getApi;
 const resizingImage = (width, height, filename) => __awaiter(void 0, void 0, void 0, function* () {
@@ -47,7 +47,7 @@ const getResizedImage = (req, res) => __awaiter(void 0, void 0, void 0, function
     if ((0, express_validator_1.validationResult)(req).isEmpty()) {
         try {
             resizingImage(width, height, filename);
-            res.render('resizeImage', {
+            res.status(200).render('resizeImage', {
                 validationErrors: req.flash("validationErrors"),
                 width,
                 height,
@@ -57,7 +57,7 @@ const getResizedImage = (req, res) => __awaiter(void 0, void 0, void 0, function
         catch (err) {
             req.flash('authError', err);
             console.log(err);
-            res.render('resizeImage', {
+            res.status(200).render('resizeImage', {
                 validationErrors: req.flash("validationErrors"),
                 width,
                 height,
@@ -67,7 +67,7 @@ const getResizedImage = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
     else {
         req.flash("validationErrors", (0, express_validator_1.validationResult)(req).array());
-        res.render('resizeImage', {
+        res.status(200).render('resizeImage', {
             validationErrors: req.flash("validationErrors"),
             thumbnail: `${filename}_${width}_${height}.jpg`,
             width,
@@ -80,22 +80,17 @@ const getOrginalImage = (req, res) => __awaiter(void 0, void 0, void 0, function
     const name = req.query.filename;
     if ((0, express_validator_1.validationResult)(req).isEmpty()) {
         try {
-            res.render('index', {
+            res.status(200).render('index', {
                 thumbnail: `${name}.jpg`,
                 validationErrors: req.flash("validationErrors")
             });
         }
         catch (err) {
-            req.flash('authError', err);
-            res.render('index', {
-                thumbnail: `${name}.jpg`,
-                validationErrors: req.flash("validationErrors")
-            });
         }
     }
     else {
         req.flash("validationErrors", (0, express_validator_1.validationResult)(req).array());
-        res.render('index', {
+        res.status(200).render('index', {
             thumbnail: `${name}.jpg`,
             validationErrors: req.flash("validationErrors")
         });

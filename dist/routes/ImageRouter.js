@@ -17,7 +17,7 @@ router.get('/images', (0, express_validator_1.query)('height')
     .isInt({ max: 1000, min: 100 })
     .withMessage('range of the width should be [ 100, 1000 ]'), (0, express_validator_1.query)('filename')
     .exists()
-    .withMessage('Imge name is required')
+    .withMessage('Image name is required')
     .isIn(imageNames)
     .withMessage('image is not exist'), ImageController_1.getResizedImage);
 router.get('/orginal', (0, express_validator_1.query)('filename')

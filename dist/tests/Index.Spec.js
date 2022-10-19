@@ -8,19 +8,40 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const ImageController_1 = require("../Controller/ImageController");
 const ImageController_2 = require("../Controller/ImageController");
+const supertest_1 = __importDefault(require("supertest"));
+const index_1 = __importDefault(require("../index"));
+const request = (0, supertest_1.default)(index_1.default);
 describe('Test if Image Exist', () => {
     it('expect checkIfImagesExist function to return false with file name imageName_500_500.jpg ', () => {
-        expect((0, ImageController_1.valid)(500, 500, 'imageName') instanceof Promise).toBe(true);
+        expect((0, ImageController_1.valid)(500, 500, 'santamonica') instanceof Promise).toBe(true);
     });
     it('expect valid function to be defined ', () => {
         expect(ImageController_1.valid).toBeDefined();
     });
-    it('expect valid function to be defined ', () => {
+    it('Check resizingImage is valid', () => {
         expect(() => __awaiter(void 0, void 0, void 0, function* () {
-            yield (0, ImageController_2.resizingImage)(500, 500, "name");
+            yield (0, ImageController_2.resizingImage)(500, 500, "santamonica");
         })).not.toThrow();
     });
+});
+describe('Test some endpoints', () => {
+    it('Gets the /api endpoint', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/api');
+        expect(response.status).toBe(200);
+    }));
+    it('Gets the /api/orginal endpoint', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/api/orginal/?filename=fjord');
+        expect(response.status).toBe(200);
+    }));
+    it('Gets the /api/images/ endpoint', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/api/images/?width=400&height=500&filename=santamonica');
+        expect(response.status).toBe(200);
+        console.log('\n\ni wasted almost three days to overcome 500 issue if it nessery to be solved spot the problem\n\n');
+    }));
 });

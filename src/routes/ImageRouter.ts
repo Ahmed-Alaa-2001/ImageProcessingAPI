@@ -19,7 +19,7 @@ router.get(
     .withMessage('range of the width should be [ 100, 1000 ]'),
   query('filename')
     .exists()
-    .withMessage('Imge name is required')
+    .withMessage('Image name is required')
     .isIn(imageNames)
     .withMessage('image is not exist'),
     getResizedImage
