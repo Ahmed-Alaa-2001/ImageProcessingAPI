@@ -36,7 +36,6 @@ module.exports = {
         "plugin:@typescript-eslint/recommended"
     ],
     "overrides": [
-        [ "disr/**/*.js" ],
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {

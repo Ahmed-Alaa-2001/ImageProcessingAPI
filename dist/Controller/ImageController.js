@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOrginalImage = exports.getResizedImage = exports.valid = exports.getApi = void 0;
+exports.resizingImage = exports.getOrginalImage = exports.getResizedImage = exports.valid = exports.getApi = void 0;
 const express_validator_1 = require("express-validator");
 const sharp_1 = __importDefault(require("sharp"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -33,16 +33,20 @@ const getApi = (req, res, next) => {
     res.send("go to image Api");
 };
 exports.getApi = getApi;
+const resizingImage = (width, height, filename) => __awaiter(void 0, void 0, void 0, function* () {
+    const isImageExist = yield valid(width, height, filename);
+    if (!isImageExist) {
+        yield (0, sharp_1.default)(`${input}/${filename}.jpg`).resize(Number(width), Number(height)).toFile(`${output}/${filename}_${width}_${height}.jpg`);
+    }
+});
+exports.resizingImage = resizingImage;
 const getResizedImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const height = parseInt(req.query.height, 10);
     const width = parseInt(req.query.width, 10);
     const filename = req.query.filename;
     if ((0, express_validator_1.validationResult)(req).isEmpty()) {
         try {
-            const isImageExist = yield valid(width, height, filename);
-            if (!isImageExist) {
-                yield (0, sharp_1.default)(`${input}/${filename}.jpg`).resize(Number(width), Number(height)).toFile(`${output}/${filename}_${width}_${height}.jpg`);
-            }
+            resizingImage(width, height, filename);
             res.render('resizeImage', {
                 validationErrors: req.flash("validationErrors"),
                 width,

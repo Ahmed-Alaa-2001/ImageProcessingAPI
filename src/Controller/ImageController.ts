@@ -22,6 +22,12 @@ const valid = async (width: number, height: number, filename: string): Promise<b
 const getApi = (req: Request, res: Response, next: NextFunction) => {
     res.send("go to image Api");
 }
+const resizingImage = async (width: number, height: number, filename: string): Promise<void> => {
+    const isImageExist = await valid(width, height, filename)
+    if (!isImageExist) {
+        await sharp(`${input}/${filename}.jpg`).resize(Number(width), Number(height)).toFile(`${output}/${filename}_${width}_${height}.jpg`)
+    }
+}
 
 const getResizedImage = async (req: Request, res: Response) => {
     const height: number = parseInt(req.query.height as string, 10)
@@ -29,10 +35,7 @@ const getResizedImage = async (req: Request, res: Response) => {
     const filename: string = req.query.filename as string
     if (validationResult(req).isEmpty()) {
         try {
-            const isImageExist = await valid(width, height, filename)
-            if (!isImageExist) {
-                await sharp(`${input}/${filename}.jpg`).resize(Number(width), Number(height)).toFile(`${output}/${filename}_${width}_${height}.jpg`)
-            }
+            resizingImage(width, height, filename);
             // console.log(req.flash("validationErrors"));
             res.render('resizeImage', {
                 validationErrors: req.flash("validationErrors"),
@@ -89,4 +92,4 @@ const getOrginalImage= async (req: Request, res: Response) => {
         })
     }
 }
-export { getApi,valid,getResizedImage,getOrginalImage };
+export { getApi,valid,getResizedImage,getOrginalImage,resizingImage };
