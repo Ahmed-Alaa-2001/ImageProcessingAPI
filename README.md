@@ -7,7 +7,7 @@
 
 * [Overview](#Overview)
 * [Tools](#Tools)
-* [Provided endpoints examples](#Provided endpoints examples)
+* [endpoints](#endpoints)
 
 ## Overview
 
@@ -23,6 +23,7 @@ TypeScript
 
 Jasmine for testing
 
-## Provided endpoints examples
+## endpoints
+* These is some examples of endpoints
 - Getting the original image:http://localhost:3000/api/orginal/?filename=santamonica
 - Getting the resized image: http://localhost:3000/api/images/?width=500&height=500&filename=santamonica
