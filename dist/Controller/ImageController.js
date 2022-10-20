@@ -17,8 +17,8 @@ const express_validator_1 = require("express-validator");
 const sharp_1 = __importDefault(require("sharp"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const path_1 = __importDefault(require("path"));
-const output = path_1.default.resolve(__dirname, '../assets/images/thumbnails');
-const input = path_1.default.resolve(__dirname, '../assets/images');
+const output = path_1.default.resolve(__dirname, '../../assets/images/thumbnails');
+const input = path_1.default.resolve(__dirname, '../../assets/images');
 const valid = (width, height, filename) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield fs_extra_1.default.ensureDir(output);
@@ -51,6 +51,7 @@ const getResizedImage = (req, res) => __awaiter(void 0, void 0, void 0, function
                 validationErrors: req.flash("validationErrors"),
                 width,
                 height,
+                output,
                 thumbnail: `${filename}_${width}_${height}.jpg`
             });
         }

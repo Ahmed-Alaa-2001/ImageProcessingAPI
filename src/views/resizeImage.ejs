@@ -1,5 +1,4 @@
 <%- include('parts/header') %>
-
 <body>
     <% let widthError = validationErrors.find(err => err.param === 'width') %>
     <% let heightError = validationErrors.find(err => err.param === 'height') %>
@@ -22,6 +21,8 @@
         </p>
     <% } if(thumbnail&&!f){ %> 
         <img src="http://localhost:3000/images/thumbnails/<%= thumbnail %>">
+        <!-- <% //console.log(output+ "\\"+ thumbnail) %> 
+        <img src=<%= //output+ "\\"+ thumbnail %> > -->
     <% } %>
 
 <%- include('parts/footer')%>

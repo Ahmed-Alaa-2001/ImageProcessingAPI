@@ -12,8 +12,10 @@ app.use(session(
     secret: 'this is my secret to hash express sessions',
     resave: false, 
     saveUninitialized: false
-}));
-app.use(express.static(path.join(__dirname, 'assets')));
+    }));
+// app.use('/images', express.static(path.join(__dirname, 'images')))
+app.use(express.static(path.join(__dirname, '../assets')))
+// console.log(path.join(__dirname, '../assets'));
 app.use(flash())
 app.set('view engine', 'ejs')
 app.set('views', path.resolve(__dirname, 'views'));

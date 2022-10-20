@@ -23,13 +23,12 @@ describe('Test some endpoints', () => {
         const response = await request.get('/api')
         expect(response.status).toBe(200)
     })
-    it('Gets the /api/orginal endpoint', async () => {
-        const response = await request.get('/api/orginal/?filename=fjord')
+    it('Gets the /images/thumbnails/santamonica_400_200.jpg endpoint', async () => {
+        const response = await request.get('/images/thumbnails/santamonica_400_200.jpg')
         expect(response.status).toBe(200)
     })
-    it('Gets the /api/images/ endpoint', async () => {
-        const response = await request.get('/api/images/?width=400&height=500&filename=santamonica')
+    it('Gets the /images/santamonica.jpg orginal image endpoint', async () => {
+        const response = await request.get('/images/santamonica.jpg')
         expect(response.status).toBe(200)
-        console.log('\n\ni wasted almost three days to overcome 500 issue if it nessery to be solved spot the problem please\n\n');
     })
 })

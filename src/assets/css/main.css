@@ -1,9 +1,0 @@
-.frm{
-    display: flex;
-    flex-direction: column;
-}
-table,
-td {
-    border: 1px solid #000;
-    padding: 10px;
-}

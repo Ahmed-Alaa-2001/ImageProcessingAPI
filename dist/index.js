@@ -15,7 +15,7 @@ app.use((0, express_session_1.default)({
     resave: false,
     saveUninitialized: false
 }));
-app.use(express_1.default.static(path_1.default.join(__dirname, 'assets')));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../assets')));
 app.use((0, connect_flash_1.default)());
 app.set('view engine', 'ejs');
 app.set('views', path_1.default.resolve(__dirname, 'views'));

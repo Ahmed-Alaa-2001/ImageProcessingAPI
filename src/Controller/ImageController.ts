@@ -4,11 +4,11 @@ import sharp from 'sharp'
 import fs from 'fs-extra'
 import path from 'path';
 
-const output: string = path.resolve(__dirname, '../assets/images/thumbnails')
-const input: string = path.resolve(__dirname, '../assets/images')
-
+const output: string = path.resolve(__dirname, '../../assets/images/thumbnails')
+const input: string = path.resolve(__dirname, '../../assets/images')
 // const getImage = (req: Request, res: Response, next: NextFunction) => {
-
+    // console.log(output);
+    // console.log(input);
 // }
 const valid = async (width: number, height: number, filename: string): Promise<boolean> => {
     try {
@@ -37,10 +37,12 @@ const getResizedImage = async (req: Request, res: Response) => {
         try {
             resizingImage(width, height, filename);
             // console.log(req.flash("validationErrors"));
+            // console.log(filename);
             res.status(200).render('resizeImage', {
                 validationErrors: req.flash("validationErrors"),
                 width,
                 height,
+                output,
                 thumbnail: `${filename}_${width}_${height}.jpg`
             })
         } catch (err: unknown) {
